@@ -38,8 +38,9 @@ extension URLSession {
         }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        do {
+        do {           
             request.httpBody =  try encoder.encode(payload)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type") // TODO
         } catch {
             return Fail(error: RequestError.encodingFailed)
                 .eraseToAnyPublisher()

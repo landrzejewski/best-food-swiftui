@@ -12,7 +12,8 @@ struct BestFoodApp: App {
     
     var body: some Scene {
         WindowGroup {
-            BestFoodTabView().environmentObject(OrderService())
+            LoginView(viewModel: LoginViewModel())
+//            BestFoodTabView().environmentObject(OrderService())
         }
     }
     
