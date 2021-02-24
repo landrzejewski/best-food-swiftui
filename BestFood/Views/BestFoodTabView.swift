@@ -23,13 +23,18 @@ struct BestFoodTabView: View {
                     Image(systemName: "bag")
                     Text("Order")
                 }
+            RestaurantListView(viewModel: RestaurantListViewModel(restaurantService: HttpRestaurantService(), settings: settings))
+                .tabItem {
+                    Image(systemName: "bag")
+                    Text("Restaurants")
+                }
             ProfileView(viewModel: ProfileViewModel())
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
                 }
         }
-        .accentColor(.primary)
+        .accentColor(Color.blue)
     }
     
 }
