@@ -44,6 +44,7 @@
 		C1EE9FA825E51D720075EF4E /* LoginCredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE9FA725E51D720075EF4E /* LoginCredentialsModel.swift */; };
 		C1EE9FAD25E535780075EF4E /* SessionTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE9FAC25E535780075EF4E /* SessionTokenModel.swift */; };
 		C1EE9FB525E55A020075EF4E /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE9FB425E55A020075EF4E /* AuthenticationService.swift */; };
+		C1EE9FBA25E568770075EF4E /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE9FB925E568770075EF4E /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		C1EE9FA725E51D720075EF4E /* LoginCredentialsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentialsModel.swift; sourceTree = "<group>"; };
 		C1EE9FAC25E535780075EF4E /* SessionTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTokenModel.swift; sourceTree = "<group>"; };
 		C1EE9FB425E55A020075EF4E /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		C1EE9FB925E568770075EF4E /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 				C1EE9FA725E51D720075EF4E /* LoginCredentialsModel.swift */,
 				C1EE9FAC25E535780075EF4E /* SessionTokenModel.swift */,
 				C1EE9FB425E55A020075EF4E /* AuthenticationService.swift */,
+				C1EE9FB925E568770075EF4E /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				B2041B3925DBE509001213CB /* OrderViewModel.swift in Sources */,
 				B2041B0025DBC9AE001213CB /* FakeFoodService.swift in Sources */,
 				B2E9038925DBFD2400A69C8A /* ImageLoader.swift in Sources */,
+				C1EE9FBA25E568770075EF4E /* SettingsModel.swift in Sources */,
 				B2C0108325DD2B77001CEC01 /* OrderEntryModel.swift in Sources */,
 				B2041B3125DBE145001213CB /* LoadingView.swift in Sources */,
 				B2E9038425DBFB7700A69C8A /* EmptyView.swift in Sources */,

@@ -15,6 +15,11 @@ final class LoginViewModel: ObservableObject {
     @Published var isLoading = false
     
     private var subscriptions = Set<AnyCancellable>()
+    private var settingsModel: SettingsModel
+    
+    init(settingsModel: SettingsModel) {
+        self.settingsModel = settingsModel
+    }
     
     func confirm() {
         isLoading = true
@@ -31,10 +36,9 @@ final class LoginViewModel: ObservableObject {
                 case .failure(let error):
                     print(error)
                 }
-            }, receiveValue: { response in
-                // TODO store a token and use it to authorize requests
-                
-                
+            }, receiveValue: { [self] response in
+                // TODO NAIVE
+                settingsModel.setToken(response.token)
             })
             .store(in: &subscriptions)
     }

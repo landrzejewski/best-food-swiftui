@@ -9,11 +9,17 @@ import SwiftUI
 
 @main
 struct BestFoodApp: App {
+
+    @StateObject var settingsModel = SettingsModel()
     
     var body: some Scene {
         WindowGroup {
-            LoginView(viewModel: LoginViewModel())
-//            BestFoodTabView().environmentObject(OrderService())
+            if (settingsModel.isUserLogged) {
+                BestFoodTabView()
+                    .environmentObject(OrderService())
+            } else {
+                LoginView(viewModel: LoginViewModel(settingsModel: settingsModel))
+            }
         }
     }
     

@@ -10,8 +10,7 @@ import Combine
 
 struct AuthenticationService {
     
-    var endpoint = "http://localhost:8000/auth/login"
-    private var subscriptions = Set<AnyCancellable>()
+    let endpoint = "http://localhost:8000/auth/login"
     
     func login(credentials: LoginCredentialsModel) -> AnyPublisher<SessionTokenModel, RequestError> {
         let publisher: AnyPublisher<SessionTokenModel, RequestError> = URLSession.shared.request(
