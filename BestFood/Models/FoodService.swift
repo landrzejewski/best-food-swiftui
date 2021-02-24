@@ -9,6 +9,6 @@ import Combine
 
 protocol FoodService {
     
-    func getFood() -> AnyPublisher<[FoodModel], RequestError>
+    func getFood(token: String) -> AnyPublisher<[FoodModel], RequestError>
     
 }

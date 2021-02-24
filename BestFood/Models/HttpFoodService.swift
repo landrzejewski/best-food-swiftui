@@ -10,8 +10,9 @@ import Combine
 
 struct HttpFoodService: FoodService {
  
-    func getFood() -> AnyPublisher<[FoodModel], RequestError> {
-        URLSession.shared.request(for: "https://raw.githubusercontent.com/landrzejewski/best-food-swiftui/main/extras/data.json")
+    func getFood(token: String) -> AnyPublisher<[FoodModel], RequestError> {
+//        URLSession.shared.request(for: "https://raw.githubusercontent.com/landrzejewski/best-food-swiftui/main/extras/data.json")
+        URLSession.shared.request(for: "http://localhost:8000/food", token: token)
     }
     
 }

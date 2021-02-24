@@ -32,15 +32,13 @@ struct EmptyResponse: Decodable {
 
 extension URLSession {
     
-    func request<Payload: Encodable, Response: Decodable>(for urlString: String, method: HttpMethod = .post, payload: Payload, encoder: JSONEncoder = JSONEncoder(), decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response, RequestError> {
+    func request<Payload: Encodable, Response: Decodable>(for urlString: String, method: HttpMethod = .post, payload: Payload, token: String = "", encoder: JSONEncoder = JSONEncoder(), decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response, RequestError> {
         guard let url = URL(string: urlString) else {
             return Fail(error: RequestError.invalidUrl).eraseToAnyPublisher()
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        do {           
-            request.httpBody =  try encoder.encode(payload)
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type") // TODO
+        var request = getRequest(for: url, method: method, token: token)
+        do {
+            request.httpBody = try encoder.encode(payload)
         } catch {
             return Fail(error: RequestError.encodingFailed)
                 .eraseToAnyPublisher()
@@ -52,14 +50,13 @@ extension URLSession {
             .eraseToAnyPublisher()
     }
     
-    func request<Payload: Encodable>(for urlString: String, method: HttpMethod = .post, payload: Payload, encoder: JSONEncoder = JSONEncoder()) -> AnyPublisher<Void, RequestError> {
+    func request<Payload: Encodable>(for urlString: String, method: HttpMethod = .post, payload: Payload, token: String = "", encoder: JSONEncoder = JSONEncoder()) -> AnyPublisher<Void, RequestError> {
         guard let url = URL(string: urlString) else {
             return Fail(error: RequestError.invalidUrl).eraseToAnyPublisher()
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
+        var request = getRequest(for: url, method: method, token: token)
         do {
-            request.httpBody =  try encoder.encode(payload)
+            request.httpBody = try encoder.encode(payload)
         } catch {
             return Fail(error: RequestError.encodingFailed).eraseToAnyPublisher()
         }
@@ -69,12 +66,11 @@ extension URLSession {
             .eraseToAnyPublisher()
     }
     
-    func request<Response: Decodable>(for urlString: String, method: HttpMethod = .get, decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response, RequestError> {
+    func request<Response: Decodable>(for urlString: String, method: HttpMethod = .get, token: String = "", decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response, RequestError> {
         guard let url = URL(string: urlString) else {
             return Fail(error: RequestError.invalidUrl).eraseToAnyPublisher()
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
+        let request = getRequest(for: url, method: method, token: token)
         return send(request)
             .decode(type: Response.self, decoder: decoder)
             .mapError { _ in RequestError.decodingFailed }
@@ -87,6 +83,17 @@ extension URLSession {
             .mapError { RequestError.requestFailed($0.errorCode, $0.localizedDescription) }
             .map { $0.data }
             .eraseToAnyPublisher()
+    }
+    
+    private func getRequest(for url: URL, method: HttpMethod, token: String) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        if (!token.isEmpty) {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        return request
     }
     
 }

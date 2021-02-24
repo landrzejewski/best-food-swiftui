@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct AuthenticationService {
+struct AuthenticationService: AuthenticationServiceProtocol {
     
     let endpoint = "http://localhost:8000/auth/login"
     

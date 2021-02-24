@@ -17,6 +17,7 @@ struct BestFoodApp: App {
             if (settingsModel.isUserLogged) {
                 BestFoodTabView()
                     .environmentObject(OrderService())
+                    .environmentObject(settingsModel)
             } else {
                 LoginView(viewModel: LoginViewModel(settingsModel: settingsModel))
             }

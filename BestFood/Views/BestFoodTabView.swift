@@ -9,9 +9,11 @@ import SwiftUI
 
 struct BestFoodTabView: View {
     
+    @EnvironmentObject var settings: SettingsModel
+    
     var body: some View {
         TabView {
-            FoodListView(viewModel: FoodListViewModel(foodService: HttpFoodService()))
+            FoodListView(viewModel: FoodListViewModel(foodService: HttpFoodService(), settings: settings))
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Food")
