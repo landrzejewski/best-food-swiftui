@@ -25,7 +25,7 @@ struct BestFoodTabView: View {
                 }
             RestaurantListView(viewModel: RestaurantListViewModel(restaurantService: HttpRestaurantService(), settings: settings))
                 .tabItem {
-                    Image(systemName: "bag")
+                    Image(systemName: "binoculars")
                     Text("Restaurants")
                 }
             ProfileView(viewModel: ProfileViewModel())
