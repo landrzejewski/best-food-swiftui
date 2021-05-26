@@ -10,14 +10,14 @@ import Combine
 
 struct AuthenticationService: AuthenticationServiceProtocol {
     
-    let endpoint = "http://localhost:8000/auth/login"
+    let endpoint = "http://localhost:8000/auth"
     
     func login(credentials: LoginCredentialsModel) -> AnyPublisher<SessionTokenModel, RequestError> {
-        let publisher: AnyPublisher<SessionTokenModel, RequestError> = URLSession.shared.request(
-            for: endpoint,
-            payload: credentials)
+//        let publisher: AnyPublisher<SessionTokenModel, RequestError> = URLSession.shared.request(
+//            for: endpoint,
+//            payload: credentials)
         
-        return publisher
+        return URLSession.shared.request(for: endpoint)
     }
     
 }

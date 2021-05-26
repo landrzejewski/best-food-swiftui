@@ -23,7 +23,7 @@ final class OrderService: ObservableObject {
     }
     
     func confirm() {
-        URLSession.shared.request(for: "http://fullstack-developer.io/orders", payload: OrderModel(entries: entries))
+        URLSession.shared.request(for: "http://localhost:8000/orders", payload: OrderModel(entries: entries))
             .sink(receiveCompletion: { [self] completion in
                 switch completion {
                 case .finished:

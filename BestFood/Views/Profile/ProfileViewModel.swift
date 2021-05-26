@@ -30,7 +30,7 @@ final class ProfileViewModel: ObservableObject {
             passwordIsValid(),
             passwordMatchesConfirmation
         )
-        .debounce(for: .microseconds(500), scheduler: RunLoop.main)
+        .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
         .map { $0 && $1 && $2}
         .assign(to: &$isFormValid)
     }
