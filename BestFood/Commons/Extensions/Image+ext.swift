@@ -1,10 +1,3 @@
-//
-//  Image+ext.swift
-//  BestFood
-//
-//  Created by Łukasz Andrzejewski on 20/02/2021.
-//
-
 import SwiftUI
 
 extension Image {
